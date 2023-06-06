@@ -1,3 +1,26 @@
+#主环境
+#用maven参数指定读取的配置 打包会直接打包当前选定配置 不会全量打包
+#单独打包命令  mvn clean package -P dev
 spring:
   profiles:
-    active: dev
+    active:  @env@ #启动读取配置 调用maven参数
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher #swagger配置 不配无法启动
+#配置解释器配置 用于自定义配置的识别提示
+dependencies:
+  annotationProcessor: "org.springframework.boot:spring-boot-configuration-processor"
+
+swagger:
+  #访问路径 http://localhost:8081/doc.html
+  basic:
+    enable: true
+    username: admin
+    password: admin
+#自定义swagger配置
+swagger-entity:
+  base-package: "com.example.spring.controller"
+  title: zzx-zzx
+  version: 1.0
+  description: "springboot模版 --swagger"
+

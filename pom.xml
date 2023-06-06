@@ -15,12 +15,31 @@
     <description>springboot2.7.12</description>
     <properties>
         <java.version>1.8</java.version>
+        <swagger2-version>2.9.2</swagger2-version>
+        <swagger2-ui-version>1.9.6</swagger2-ui-version>
+        <jjwt-version>0.9.1</jjwt-version>
+        <mybatis-plus-version>3.5.3.1</mybatis-plus-version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <!--springboot 配置注解处理器 用于自定义配置读取-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -32,7 +51,67 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+
+<!--        swagger2-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger2-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>${swagger2-ui-version}</version>
+        </dependency>
+<!--  数据校验框架 validation注解化校验判断-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+<!--        jwt token校验-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt-version}</version>
+        </dependency>
+
+        <!-- 数据库依赖-->
+<!--        redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+<!--        mysql-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.48</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+<!--        mybatis-plus-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus-version}</version>
+        </dependency>
+        <!--    代码生成器-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis-plus-version}</version>
+        </dependency>
+        <!--    freemarker-->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
     </dependencies>
+
+
 
     <build>
         <plugins>
@@ -49,6 +128,61 @@
                 </configuration>
             </plugin>
         </plugins>
+
+<!--&lt;!&ndash;        打包配置 先删除所有配置 再载入单一配置&ndash;&gt;-->
+<!--        <resources>-->
+<!--        &lt;!&ndash; 移除 &ndash;&gt;-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                <excludes>-->
+<!--                    <exclude>application*.yml</exclude>-->
+<!--                </excludes>-->
+<!--            </resource>-->
+<!--            &lt;!&ndash; 添加 &ndash;&gt;-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                <includes>-->
+<!--                    <include>application.yml</include>-->
+<!--                    <include>application-${env}.yml</include>-->
+<!--                </includes>-->
+<!--            </resource>-->
+<!--        </resources>-->
     </build>
+
+
+
+    <!--springboot配置设置 配置全局env变量的选取调用-->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env>dev</env>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <env>prod</env>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>uat</id>
+            <properties>
+                <env>uat</env>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

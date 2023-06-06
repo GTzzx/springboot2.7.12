@@ -1,0 +1,4 @@
+#预发布环境
+env: uat
+server:
+  port: 8084

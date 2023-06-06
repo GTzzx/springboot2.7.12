@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ApifoxUploaderProjectSetting">
+    <option name="apifoxAccessToken" value="APS-W9IgcEq49svVQEVK4sGRvDS0irOlbriW" />
+    <option name="apifoxApiOverwriteMode" value="覆盖所有字段" />
+    <option name="apifoxProjectIds">
+      <array>
+        <option value="# ModuleName:ProjectID" />
+        <option value="novel:2764050" />
+        <option value="zzxGT:2764661" />
+        <option value="springboot2.7.12:2836614" />
+      </array>
+    </option>
+    <option name="yapiTokens" value="" />
+  </component>
+</project>
