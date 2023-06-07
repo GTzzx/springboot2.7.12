@@ -3,6 +3,7 @@ env: dev
 server:
   port: 8081
 
+
 #jwt秘钥
 jwt:
   secret-key: admin #获取的key
