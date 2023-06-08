@@ -14,24 +14,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+/**
+ * swagger接口文档访问路径/doc.html
+ */
 @RestController
 @Api(tags = "测试模块")
-//swagger接口文档访问路径/doc.html
-public class testController {
+public class TestController {
 
     @Value("${env}")
     private String env;
 
+
     @ApiOperation(value = "测试环境配置接口")
     @GetMapping("/env")
-    //进行响应状态封装 对象模式
-//    public DataResult<String> getEnv(){
-//        return  DataResult.success("env="+env);
-//    }
-    //进行响应状态封装 装饰者模式
+
+    /*进行响应状态封装 对象模式*/
+    //    public DataResult<String> getEnv(){
+    //        return  DataResult.success("env="+env);
+    //    }
+
+
+    /*进行响应状态封装 装饰者模式 */
     public String getEnv(){
         return  "env="+env;
     }
+
 
     @ApiOperation(value = "全局异常统一测试接口")
     @GetMapping("/error")
